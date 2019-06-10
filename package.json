@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|less|scss|md|mdx|graphql)\"",
-    "format": "yarn prettier -- --write"
+    "format": "yarn prettier -- --write",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "lerna": "^3.15.0",
