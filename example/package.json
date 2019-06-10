@@ -1,0 +1,20 @@
+{
+  "name": "shopify-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bryan Kegley <hi@bryankegley.me>",
+  "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build"
+  },
+  "dependencies": {
+    "gatsby": "^2.6.0",
+    "gatsby-theme-shopify": "*",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0"
+  }
+}

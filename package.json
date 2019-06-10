@@ -1,0 +1,19 @@
+{
+  "name": "gatsby-theme-shopify",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "author": "Bryan Kegley <hi@bryankegley.me>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "example"
+  ],
+  "scripts": {
+    "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|less|scss|md|mdx|graphql)\"",
+    "format": "yarn prettier -- --write"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
