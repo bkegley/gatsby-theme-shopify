@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "private": true,
   "author": "Bryan Kegley <hi@bryankegley.me>",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "gatsby": "^2.6.0",
-    "gatsby-theme-shopify": "*",
+    "gatsby-theme-shopify": "^0.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
