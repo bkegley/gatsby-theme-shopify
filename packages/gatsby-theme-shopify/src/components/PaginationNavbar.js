@@ -31,7 +31,7 @@ const buildPaginationArray = (currentPage, totalPages, maxItems = 5) => {
 const PaginationNavbar = ({pageNumber, totalPages, baseUrl}) => {
   const paginationArray = buildPaginationArray(pageNumber, totalPages, 7)
 
-  console.log({baseUrl})
+  console.log({paginationArray})
 
   const paginationLinks = paginationArray.map(link => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import {graphql} from 'gatsby'
-import ProductListPage from '../components/Product/ProductListPage'
+import ProductListPage from '../components/ProductListPage'
 
 const ProductListWrapper = props => {
   return <ProductListPage {...props} />

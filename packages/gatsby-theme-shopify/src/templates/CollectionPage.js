@@ -1,6 +1,6 @@
 import React from 'react'
 import {graphql} from 'gatsby'
-import CollectionPage from '../components/Product/CollectionPage'
+import CollectionPage from '../components/CollectionPage'
 
 const CollectionPageWrapper = props => {
   return <CollectionPage {...props} />

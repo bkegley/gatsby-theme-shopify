@@ -8,19 +8,7 @@ module.exports = {
   __experimentalThemes: [
     {
       resolve: 'gatsby-theme-shopify',
-      options: {shopName, accessToken},
-    },
-    {
-      resolve: 'gatsby-theme-shopify-articles',
-      options: {shopName, accessToken},
-    },
-    {
-      resolve: 'gatsby-theme-shopify-policies',
-      options: {shopName, accessToken},
-    },
-    {
-      resolve: 'gatsby-theme-shopify-products',
-      options: {shopName, accessToken},
+      options: {shopName, accessToken, modules: ['policies', 'products', 'collections', 'articles']},
     },
   ],
 }

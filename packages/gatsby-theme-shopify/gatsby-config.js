@@ -1,10 +1,18 @@
 module.exports = themeOptions => {
+  const {shopName, accessToken} = themeOptions
   return {
-    __experimentalThemes: [
-      // 'gatsby-theme-ui'
-    ],
+    __experimentalThemes: [],
     plugins: [
+      {
+        resolve: 'gatsby-source-shopify',
+        options: {
+          shopName,
+          accessToken,
+        },
+      },
       'gatsby-plugin-emotion',
+      'gatsby-transformer-sharp',
+      'gatsby-plugin-sharp',
       {
         resolve: 'gatsby-plugin-compile-es6-packages',
         options: {

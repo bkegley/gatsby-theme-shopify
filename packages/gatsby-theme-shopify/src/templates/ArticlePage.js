@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {graphql} from 'gatsby'
-import ArticlePage from '../components/Article/ArticlePage'
+import ArticlePage from '../components/ArticlePage'
 
 const ArticlePageWrapper = props => {
   return <ArticlePage {...props} />

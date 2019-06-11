@@ -5659,9 +5659,9 @@ gatsby-react-router-scroll@^2.0.7:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby-source-filesystem@^2.0.38:
-  version "2.0.38"
-  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.0.38.tgz#8f9c2b8c0f17d1f8c464c3488a14e15c62c6eca2"
+gatsby-source-filesystem@^2.0.39:
+  version "2.0.39"
+  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.0.39.tgz#39d0f55aae594eea65454728676d92f1b43ba6e5"
   dependencies:
     "@babel/runtime" "^7.0.0"
     better-queue "^3.8.7"
@@ -5675,18 +5675,17 @@ gatsby-source-filesystem@^2.0.38:
     pretty-bytes "^4.0.2"
     progress "^1.1.8"
     read-chunk "^3.0.0"
-    slash "^1.0.0"
     valid-url "^1.0.9"
     xstate "^3.1.0"
 
-gatsby-source-shopify@^2.0.36:
-  version "2.0.36"
-  resolved "https://registry.yarnpkg.com/gatsby-source-shopify/-/gatsby-source-shopify-2.0.36.tgz#64d611811af1aedaf1b3a7cdca9d6d0ab568d692"
+gatsby-source-shopify@^2.0.37:
+  version "2.0.37"
+  resolved "https://registry.yarnpkg.com/gatsby-source-shopify/-/gatsby-source-shopify-2.0.37.tgz#5c7f8e3b7045f4095a76e105ee3d5e4bc0b238fa"
   dependencies:
     babel-preset-gatsby-package "^0.1.4"
     chalk "^2.4.1"
     gatsby-node-helpers "^0.3.0"
-    gatsby-source-filesystem "^2.0.38"
+    gatsby-source-filesystem "^2.0.39"
     graphql-request "^1.6.0"
     lodash "^4.17.4"
     p-iteration "^1.1.7"
