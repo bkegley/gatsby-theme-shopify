@@ -44,7 +44,9 @@ const cartReducer = (cart, action) => {
 }
 
 const initialState =
-  !window || !window.localStorage.getItem('cart') ? [] : JSON.parse(window.localStorage.getItem('cart'))
+  typeof window === 'undefined' || !window.localStorage.getItem('cart')
+    ? []
+    : JSON.parse(window.localStorage.getItem('cart'))
 
 const CartProvider = ({children}) => {
   const [cart, dispatch] = React.useReducer(cartReducer, initialState)
