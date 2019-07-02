@@ -4,7 +4,7 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
   const {articlesPerPage = 6, productsPerPage = 12, modules} = themeOptions
 
   return new Promise((resolve, reject) => {
-    if (modules.includes('articles')) {
+    if (!modules || modules.includes('articles')) {
       // ==== ARTICLE PAGES (SHOPIFY) ====
       graphql(`
         {
@@ -54,7 +54,7 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
       // ==== END ARTICLE PAGES (SHOPIFY) ====
     }
 
-    if (modules.includes('policies')) {
+    if (!modules || modules.includes('policies')) {
       // ==== CREATE POLICY PAGES ====
       graphql(`
         {
@@ -89,7 +89,7 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
       // ==== END POLICY PAGES ====
     }
 
-    if (modules.includes('products')) {
+    if (!modules || modules.includes('products')) {
       // ==== PRODUCT PAGES (SHOPIFY) ====
       graphql(`
         {
@@ -141,7 +141,7 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
       // ==== END PRODUCT PAGES (SHOPIFY) ====
     }
 
-    if (modules.includes('collections')) {
+    if (!modules || modules.includes('collections')) {
       // ==== COLLECTION PAGES (SHOPIFY) ====
       graphql(`
         {
