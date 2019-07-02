@@ -32,7 +32,14 @@ module.exports = {
 
 ### Options
 
-`shopName` and `accessToken` are required parameters but you may also optionally pass in a `modules` parameter for fine-tuning the Shopify build process.
+`shopName` and `accessToken` are required parameters but you may also optionally pass in a `modules` parameter for fine-tuning the Shopify build process. It defaults to source all modules but the following modules can be individually selected: 
+```js
+// gatsby-config.js
+options: {
+    ...options,
+    modules: ['policies', 'products', 'collections', 'articles']
+}
+```
 
 ### ShopifyProvider
 
