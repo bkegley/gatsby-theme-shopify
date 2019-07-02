@@ -1,6 +1,4 @@
 import React from 'react'
-import {css, Box} from 'theme-ui'
-import Layout from './Layout'
 
 const ArticlePage = props => {
   const {
@@ -8,10 +6,10 @@ const ArticlePage = props => {
   } = props
 
   return (
-    <Layout>
-      <h1 css={css({color: 'primary'})}>{article.title}</h1>
-      <Box dangerouslySetInnerHTML={{__html: article.contentHtml}} />
-    </Layout>
+    <div>
+      <h1>{article.title}</h1>
+      <div dangerouslySetInnerHTML={{__html: article.contentHtml}} />
+    </div>
   )
 }
 
