@@ -43,12 +43,36 @@ const buildLogoutMutation = ({customerAccessToken}) => `
   }
 `
 
-const LOGIN = 'LOGIN'
+const buildCustomerQuery = ({customerAccessToken}) => `
+  query {
+    customer(customerAccessToken: "${customerAccessToken}") {
+      acceptsMarketing
+      createdAt
+      displayName
+      email
+      firstName
+      id
+      lastName
+      phone
+      updatedAt
+    }
+  }
+`
+
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const LOGIN_ERROR = 'LOGIN_ERROR'
 const LOGOUT = 'LOGOUT'
 
 const customerReducer = (state, action) => {
   switch (action.type) {
-    case LOGIN: {
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        ...action.customerAccessTokenCreate,
+        customer: action.customer,
+      }
+    }
+    case LOGIN_ERROR: {
       return {
         ...state,
         ...action.customerAccessTokenCreate,
@@ -80,13 +104,32 @@ const CustomerProvider = ({children, shopName, storefrontAccessToken}) => {
       throw new Error(`email and password are required`)
     }
 
+    // get accessToken with provided credentials
     const {data} = await fetchShopifyStorefront({
       shopName: shopName,
       storefrontAccessToken: storefrontAccessToken,
       query: buildLoginMutation({email: email, password: password}),
     }).then(res => res.json())
 
-    dispatch({type: LOGIN, customerAccessTokenCreate: data.customerAccessTokenCreate})
+    // if credentials worked get customer
+    if (data.customerAccessTokenCreate && data.customerAccessTokenCreate.customerAccessToken) {
+      const {data: customerData} = await fetchShopifyStorefront({
+        shopName: shopName,
+        storefrontAccessToken: storefrontAccessToken,
+        query: buildCustomerQuery({
+          customerAccessToken: data.customerAccessTokenCreate.customerAccessToken.accessToken,
+        }),
+      }).then(res => res.json())
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        customerAccessTokenCreate: data.customerAccessTokenCreate,
+        customer: customerData.customer,
+      })
+    }
+
+    // if credentials failed load error into customer object
+    dispatch({type: LOGIN_ERROR, customerAccessTokenCreate: data.customerAccessTokenCreate})
   }
 
   const logout = async () => {
