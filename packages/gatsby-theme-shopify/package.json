@@ -19,6 +19,7 @@
     "gatsby-plugin-compile-es6-packages": "^1.1.0",
     "gatsby-plugin-sharp": "^2.1.3",
     "gatsby-source-shopify": "^2.0.37",
-    "gatsby-transformer-sharp": "^2.1.21"
+    "gatsby-transformer-sharp": "^2.1.21",
+    "js-cookie": "^2.2.0"
   }
 }
