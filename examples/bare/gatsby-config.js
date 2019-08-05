@@ -5,7 +5,7 @@ require('dotenv').config({
 const shopName = process.env.GATSBY_SHOP_NAME
 const accessToken = process.env.GATSBY_STOREFRONT_ACCESS_TOKEN
 module.exports = {
-  __experimentalThemes: [
+  plugins: [
     {
       resolve: 'gatsby-theme-shopify',
       options: {shopName, accessToken, modules: ['policies', 'products', 'collections', 'articles']},
