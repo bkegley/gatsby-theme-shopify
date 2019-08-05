@@ -7,7 +7,7 @@
   "license": "MIT",
   "workspaces": [
     "packages/*",
-    "example"
+    "examples/*"
   ],
   "scripts": {
     "prettier": "prettier \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|less|scss|md|mdx|graphql)\"",

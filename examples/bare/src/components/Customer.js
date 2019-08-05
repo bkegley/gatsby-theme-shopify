@@ -5,6 +5,8 @@ const customerQuery = `query customer($customerAccessToken: String!) {
     customer(customerAccessToken: $customerAccessToken) {
       email
       firstName
+      lastName
+      updatedAt
     }
   }`
 
