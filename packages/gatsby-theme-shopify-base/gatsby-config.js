@@ -16,6 +16,7 @@ module.exports = themeOptions => {
           modules: ['gatsby-theme-shopify-base'],
         },
       },
+      'gatsby-plugin-theme-ui',
     ],
   }
 }
