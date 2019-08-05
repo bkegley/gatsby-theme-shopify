@@ -1,7 +1,6 @@
 module.exports = themeOptions => {
   const {shopName, accessToken} = themeOptions
   return {
-    __experimentalThemes: [],
     plugins: [
       {
         resolve: 'gatsby-source-shopify',
