@@ -1,0 +1,21 @@
+{
+  "name": "example-bare",
+  "version": "0.0.1",
+  "main": "index.js",
+  "private": true,
+  "author": "Bryan Kegley <hi@bryankegley.me>",
+  "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build"
+  },
+  "dependencies": {
+    "gatsby": "^2.13.51",
+    "gatsby-theme-shopify": "*",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0"
+  }
+}

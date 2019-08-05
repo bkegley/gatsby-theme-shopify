@@ -1,9 +1,16 @@
 {
-  "name": "gatsby-theme-shopify",
+  "name": "gatsby-theme-shopify-base",
   "version": "0.0.1",
+  "description": "Base theme for a static Shopify site built with Gatsby themes",
   "main": "index.js",
   "author": "Bryan Kegley <hi@bryankegley.me>",
   "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "clean": "gatsby clean",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  },
   "peerDependencies": {
     "gatsby": "^2.13.51",
     "react": "^16.8.6",
@@ -15,11 +22,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "gatsby-image": "^2.1.2",
-    "gatsby-plugin-compile-es6-packages": "^1.1.0",
-    "gatsby-plugin-sharp": "^2.1.3",
-    "gatsby-source-shopify": "^2.2.0",
-    "gatsby-transformer-sharp": "^2.1.21",
-    "js-cookie": "^2.2.0"
+    "gatsby-plugin-compile-es6-packages": "^2.1.0",
+    "gatsby-theme-shopify": "*"
   }
 }
