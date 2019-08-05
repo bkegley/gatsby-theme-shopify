@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Bryan Kegley <hi@bryankegley.me>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "develop": "gatsby develop",
     "clean": "gatsby clean",
