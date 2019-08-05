@@ -1,6 +1,7 @@
 import React from 'react'
 import CartProvider from './CartProvider'
 import CustomerProvider from './CustomerProvider'
+import StorefrontProvider from './StorefrontProvider'
 
 const ShopifyProvider = ({children, shopName, storefrontAccessToken}) => {
   if (!shopName || !storefrontAccessToken) {
@@ -8,9 +9,11 @@ const ShopifyProvider = ({children, shopName, storefrontAccessToken}) => {
   }
   return (
     <CartProvider>
-      <CustomerProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken}>
-        {children}
-      </CustomerProvider>
+      <StorefrontProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken}>
+        <CustomerProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken}>
+          {children}
+        </CustomerProvider>
+      </StorefrontProvider>
     </CartProvider>
   )
 }
