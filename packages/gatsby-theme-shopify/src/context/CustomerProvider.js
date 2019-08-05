@@ -1,19 +1,8 @@
 import React from 'react'
 import Cookie from 'js-cookie'
+import fetchShopifyStorefront from '../utils/fetchShopifyStorefront'
 
 export const CustomerContext = React.createContext()
-
-const fetchShopifyStorefront = ({shopName, storefrontAccessToken, query, api = '2019-07'}) => {
-  const url = `https://${shopName}.myshopify.com/api/graphql`
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-    },
-    body: query,
-  })
-}
 
 const FETCH_INIT = 'FETCH_INIT'
 const FETCH_SUCCESS = 'FETCH_SUCCESS'
@@ -35,8 +24,7 @@ let initialState = {
   checkedCredentials: false,
 }
 
-const renewAccessTokenMutation = {
-  query: `mutation customerAccessTokenRenew($customerAccessToken: String!){
+const renewAccessTokenMutation = `mutation customerAccessTokenRenew($customerAccessToken: String!){
           customerAccessTokenRenew(customerAccessToken: $customerAccessToken) {
             customerAccessToken {
               accessToken
@@ -47,11 +35,9 @@ const renewAccessTokenMutation = {
               message
             }
           }
-        }`,
-}
+        }`
 
-const loginMutation = {
-  query: `mutation customerAccessTokenCreate($email: String!, $password: String!) {
+const loginMutation = `mutation customerAccessTokenCreate($email: String!, $password: String!) {
         customerAccessTokenCreate(input: {email: $email, password: $password}) {
           customerAccessToken {
             accessToken
@@ -63,11 +49,9 @@ const loginMutation = {
             message
           }
         }
-      }`,
-}
+      }`
 
-const logoutMutation = {
-  query: `mutation customerAccessTokenDelete($customerAccessToken: String!) {
+const logoutMutation = `mutation customerAccessTokenDelete($customerAccessToken: String!) {
       customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
         deletedAccessToken
         deletedCustomerAccessTokenId
@@ -76,11 +60,9 @@ const logoutMutation = {
           message
         }
       }
-    }`,
-}
+    }`
 
-const updatePasswordMutation = {
-  query: `mutation customerUpdate($customerAccessToken: String! $customer: CustomerUpdateInput!) {
+const updatePasswordMutation = `mutation customerUpdate($customerAccessToken: String! $customer: CustomerUpdateInput!) {
       customerUpdate(customerAccessToken: $customerAccessToken customer: $customer) {
         customerAccessToken {
           accessToken
@@ -92,8 +74,7 @@ const updatePasswordMutation = {
           message
         }
       }
-    }`,
-}
+    }`
 
 function reducer(state, action) {
   switch (action.type) {
@@ -202,10 +183,8 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
       const renewAccessTokenData = await fetchShopifyStorefront({
         shopName,
         storefrontAccessToken,
-        query: JSON.stringify({
-          ...renewAccessTokenMutation,
-          variables: {customerAccessToken: customerCookieAccessToken},
-        }),
+        query: renewAccessTokenMutation,
+        variables: {customerAccessToken: customerCookieAccessToken},
       })
         .then(res => res.json())
         .then(res => res)
@@ -250,10 +229,8 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
             fetchShopifyStorefront({
               shopName,
               storefrontAccessToken,
-              query: JSON.stringify({
-                ...loginMutation,
-                variables: {email, password},
-              }),
+              query: loginMutation,
+              variables: {email, password},
             })
               .then(res => res.json())
               .then(res => {
@@ -284,10 +261,8 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
             fetchShopifyStorefront({
               shopName,
               storefrontAccessToken,
-              query: JSON.stringify({
-                ...logoutMutation,
-                variables: {customerAccessToken: data.accessToken},
-              }),
+              query: logoutMutation,
+              variables: {customerAccessToken: data.accessToken},
             })
               .then(res => res.json())
               .then(res => {
@@ -316,10 +291,8 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
             fetchShopifyStorefront({
               shopName,
               storefrontAccessToken,
-              query: JSON.stringify({
-                ...updatePasswordMutation,
-                variables: {customerAccessToken: data.accessToken, customer: {password}},
-              }),
+              query: updatePasswordMutation,
+              variables: {customerAccessToken: data.accessToken, customer: {password}},
             })
               .then(res => res.json())
               .then(res => {
