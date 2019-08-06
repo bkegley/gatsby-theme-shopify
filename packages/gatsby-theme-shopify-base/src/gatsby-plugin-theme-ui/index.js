@@ -1,5 +1,3 @@
-export default {
-  colors: {
-    primary: 'palevioletred',
-  },
-}
+import theme from '../theme'
+
+export default theme
