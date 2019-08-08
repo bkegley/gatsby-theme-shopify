@@ -56,7 +56,7 @@ const CartProvider = ({children}) => {
   }, [cart])
 
   const addToCart = ({shopifyId, quantity, ...remaining}) => {
-    if (!shopifyId || !quantity) {
+    if (!shopifyId || (!quantity && quantity !== 0)) {
       throw new Error('shopifyId and quantity are required')
     }
     const lineItem = {
