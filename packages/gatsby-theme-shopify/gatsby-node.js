@@ -62,7 +62,9 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
             edges {
               node {
                 id
-                title
+                fields {
+                  slug
+                }
               }
             }
           }
@@ -73,12 +75,8 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
           reject(result.errors)
         }
         result.data.allShopifyShopPolicy.edges.map(edge => {
-          const handle = edge.node.title
-            .toLowerCase()
-            .split(' ')
-            .join('-')
           createPage({
-            path: `/policies/${handle}/`,
+            path: edge.node.fields.slug,
             component: require.resolve(`./src/templates/PolicyPage.js`),
             context: {
               id: edge.node.id,
@@ -222,6 +220,18 @@ exports.onCreateNode = ({node, actions}) => {
       name: `slug`,
       node,
       value: `/articles/${handle}`,
+    })
+  }
+
+  if (node.internal.type === `ShopifyShopPolicy`) {
+    const handle = node.title
+      .toLowerCase()
+      .split(' ')
+      .join('-')
+    createNodeField({
+      name: `slug`,
+      node,
+      value: `/policies/${handle}`,
     })
   }
 }
