@@ -3,10 +3,10 @@ import {jsx, Flex, Box, Styled} from 'theme-ui'
 import React from 'react'
 import Image from 'gatsby-image'
 import {useCart} from 'gatsby-theme-shopify'
+import Layout from './Layout'
 
 const ProductPage = ({data}) => {
-  const {cart, addToCart} = useCart()
-  console.log({cart})
+  const {addToCart} = useCart()
 
   const {shopifyProduct: product} = data
   const initialValues = Object.assign(...product.options.map(option => ({[option.name]: option.values[0]})), {
@@ -42,6 +42,7 @@ const ProductPage = ({data}) => {
   })
 
   const submitForm = () => {
+    console.log({variant, values})
     addToCart({...variant, quantity: values.quantity})
   }
 
@@ -66,7 +67,7 @@ const ProductPage = ({data}) => {
       )
     })
   return (
-    <div>
+    <Layout>
       <Flex sx={{flexDirection: ['column', 'column', 'row', 'row']}}>
         <Box sx={{flex: 1, mb: 4}}>
           <Box>
@@ -100,8 +101,7 @@ const ProductPage = ({data}) => {
       <Box>
         <p>{product.description}</p>
       </Box>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    </Layout>
   )
 }
 
