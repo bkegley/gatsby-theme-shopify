@@ -1,7 +1,8 @@
 import {base} from '@theme-ui/presets'
 
 const buttonStyles = {
-  p: 3,
+  px: 3,
+  py: 2,
   textTransform: 'uppercase',
   cursor: 'pointer',
 }
