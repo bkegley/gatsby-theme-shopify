@@ -83,7 +83,7 @@ const CartProvider = ({children}) => {
     dispatch({type: EMPTY_CART})
   }
 
-  const value = React.useMemo(() => ({cart, addToCart, updateCartLineItem, removeCartLineItem, emptyCart}), [cart])
+  const value = React.useMemo(() => [cart, {addToCart, updateCartLineItem, removeCartLineItem, emptyCart}], [cart])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

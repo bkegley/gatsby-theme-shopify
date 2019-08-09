@@ -4,7 +4,7 @@ import {graphql, useStaticQuery, Link} from 'gatsby'
 import {useCart} from 'gatsby-theme-shopify-core'
 
 const Header = () => {
-  const {cart} = useCart()
+  const [cart] = useCart()
   const cartQuantity = cart.reduce((count, item) => count + item.quantity, 0)
   console.log({cart})
   const data = useStaticQuery(graphql`
