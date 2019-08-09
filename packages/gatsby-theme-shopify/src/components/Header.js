@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx, Flex, Box, Styled} from 'theme-ui'
 import {graphql, useStaticQuery, Link} from 'gatsby'
-import {useCart} from 'gatsby-theme-shopify-base'
+import {useCart} from 'gatsby-theme-shopify-core'
 
 const Header = () => {
   const {cart} = useCart()

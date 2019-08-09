@@ -7,7 +7,7 @@ const accessToken = process.env.GATSBY_STOREFRONT_ACCESS_TOKEN
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-theme-shopify',
+      resolve: 'gatsby-theme-shopify-core',
       options: {shopName, accessToken, modules: ['policies', 'products', 'collections', 'articles']},
     },
   ],

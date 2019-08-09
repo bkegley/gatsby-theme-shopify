@@ -1,5 +1,5 @@
 import React from 'react'
-import {useCart, useCustomer} from 'gatsby-theme-shopify'
+import {useCart, useCustomer} from 'gatsby-theme-shopify-core'
 import {Link} from 'gatsby'
 import Customer from '../components/Customer'
 

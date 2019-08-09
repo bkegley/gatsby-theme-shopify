@@ -1,5 +1,5 @@
 import React from 'react'
-import {ShopifyProvider} from 'gatsby-theme-shopify'
+import {ShopifyProvider} from 'gatsby-theme-shopify-core'
 
 export const wrapRootElement = ({element}) => {
   return (

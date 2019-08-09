@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'gatsby'
-import {useCustomer} from 'gatsby-theme-shopify'
+import {useCustomer} from 'gatsby-theme-shopify-core'
 
 const PageTwo = () => {
   const {customer} = useCustomer()

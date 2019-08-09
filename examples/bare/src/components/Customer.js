@@ -1,5 +1,5 @@
 import React from 'react'
-import {useStorefront} from 'gatsby-theme-shopify'
+import {useStorefront} from 'gatsby-theme-shopify-core'
 
 const customerQuery = `query customer($customerAccessToken: String!) {
     customer(customerAccessToken: $customerAccessToken) {
