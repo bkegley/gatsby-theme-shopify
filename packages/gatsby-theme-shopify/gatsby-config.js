@@ -20,6 +20,18 @@ module.exports = themeOptions => {
         },
       },
       'gatsby-plugin-theme-ui',
+      {
+        resolve: 'gatsby-plugin-page-creator',
+        options: {
+          path: `${__dirname}/src/pages`,
+        },
+      },
+      {
+        resolve: 'gatsby-plugin-create-client-paths',
+        options: {
+          prefixes: ['/account/*'],
+        },
+      },
     ],
   }
 }
