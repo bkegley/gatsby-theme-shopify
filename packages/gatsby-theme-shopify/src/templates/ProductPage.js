@@ -26,6 +26,11 @@ export const query = graphql`
           }
         }
       }
+      options {
+        id
+        name
+        values
+      }
       variants {
         shopifyId
         fields {

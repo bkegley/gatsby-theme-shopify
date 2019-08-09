@@ -2,6 +2,9 @@ module.exports = themeOptions => {
   const {shopName, accessToken} = themeOptions
 
   return {
+    siteMetadata: {
+      title: 'Gatsby Theme Shopify',
+    },
     plugins: [
       {
         resolve: 'gatsby-theme-shopify',
@@ -16,6 +19,7 @@ module.exports = themeOptions => {
           modules: ['gatsby-theme-shopify-base'],
         },
       },
+      'gatsby-plugin-theme-ui',
     ],
   }
 }

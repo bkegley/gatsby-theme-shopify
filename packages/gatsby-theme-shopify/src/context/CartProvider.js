@@ -11,12 +11,12 @@ const cartReducer = (cart, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       // check if line item already exists
-      const existingLineItem = cart.find(item => item.id === action.lineItem.id)
+      const existingLineItem = cart.find(item => item.shopifyId === action.lineItem.shopifyId)
       return (
         cart
           .map(item => {
             // update quantity if line item already exists
-            if (item.id === action.lineItem.id) {
+            if (item.shopifyId === action.lineItem.shopifyId) {
               return {...item, quantity: existingLineItem.quantity + action.lineItem.quantity}
             }
             return item
@@ -28,11 +28,11 @@ const cartReducer = (cart, action) => {
     }
     case UPDATE_CART_LINE_ITEM: {
       return cart.map(item => {
-        return item.id !== action.lineItemId ? item : action.lineItem
+        return item.shopifyId !== action.lineItemId ? item : action.lineItem
       })
     }
     case REMOVE_CART_LINE_ITEM: {
-      return cart.filter(item => item.id !== action.lineItemId)
+      return cart.filter(item => item.shopifyId !== action.lineItemId)
     }
     case EMPTY_CART: {
       return []
@@ -55,8 +55,20 @@ const CartProvider = ({children}) => {
     window.localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  const addToCart = lineItem => {
-    dispatch({type: ADD_TO_CART, lineItem})
+  const addToCart = ({shopifyId, quantity, ...remaining}) => {
+    if (!shopifyId || (!quantity && quantity !== 0)) {
+      throw new Error('shopifyId and quantity are required')
+    }
+    const lineItem = {
+      shopifyId,
+      quantity: typeof quantity === 'number' ? quantity : parseInt(quantity),
+      ...remaining,
+    }
+
+    dispatch({
+      type: ADD_TO_CART,
+      lineItem,
+    })
   }
 
   const updateCartLineItem = ({lineItem, lineItemId}) => {
