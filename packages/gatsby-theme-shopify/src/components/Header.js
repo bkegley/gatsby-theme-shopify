@@ -6,7 +6,7 @@ import {useCart} from 'gatsby-theme-shopify-core'
 const Header = () => {
   const [cart] = useCart()
   const cartQuantity = cart.reduce((count, item) => count + item.quantity, 0)
-  console.log({cart})
+
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       site {
@@ -32,7 +32,9 @@ const Header = () => {
         </Box>
       </Flex>
       <Box>
-        <Styled.h1>{data.site.siteMetadata.title}</Styled.h1>
+        <Link to="/" sx={{textDecoration: 'none', color: 'inherit', ':hover': {color: 'primary'}}}>
+          <Styled.h1>{data.site.siteMetadata.title}</Styled.h1>
+        </Link>
       </Box>
     </Box>
   )
