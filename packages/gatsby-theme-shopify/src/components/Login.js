@@ -1,8 +1,15 @@
+/** @jsx jsx */
+import {jsx, Flex, Box} from 'theme-ui'
 import React from 'react'
 import {useCustomer} from 'gatsby-theme-shopify-core'
+import {navigate} from 'gatsby'
 
 const Login = () => {
-  const [{}, {login}] = useCustomer()
+  const [{data}, {login}] = useCustomer()
+  if (data && data.accessToken) {
+    navigate('/account')
+    return null
+  }
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const submitForm = e => {
@@ -12,9 +19,23 @@ const Login = () => {
   return (
     <div>
       <form onSubmit={submitForm}>
-        <input type="text" name="email" value={email} onChange={e => setEmail(e.currentTarget.value)} />
-        <input type="password" name="password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
-        <button type="submit">Login</button>
+        <div sx={{my: 2}}>
+          <label htmlFor="email">Email</label>
+          <input type="text" id="email" name="email" value={email} onChange={e => setEmail(e.currentTarget.value)} />
+        </div>
+        <div sx={{my: 2}}>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={e => setPassword(e.currentTarget.value)}
+          />
+        </div>
+        <button type="submit" sx={{variant: 'buttons.primary'}}>
+          Login
+        </button>
       </form>
     </div>
   )
