@@ -42,7 +42,6 @@ const ProductPage = ({data}) => {
   })
 
   const submitForm = () => {
-    console.log({variant, values})
     addToCart({...variant, quantity: values.quantity})
   }
 
