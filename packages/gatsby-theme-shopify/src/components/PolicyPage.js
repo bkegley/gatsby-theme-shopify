@@ -3,10 +3,14 @@ import {jsx} from 'theme-ui'
 import Layout from './Layout'
 
 const PolicyPage = props => {
+  const {
+    data: {shopifyShopPolicy},
+  } = props
   return (
     <Layout>
       <div>
-        <pre>{JSON.stringify(props, null, 2)}</pre>
+        <h1>{shopifyShopPolicy.title}</h1>
+        <div dangerouslySetInnerHTML={{__html: shopifyShopPolicy.body}} />
       </div>
     </Layout>
   )
