@@ -32,9 +32,11 @@ const Header = () => {
         </Box>
       </Flex>
       <Box>
-        <Link to="/" sx={{textDecoration: 'none', color: 'inherit', ':hover': {color: 'primary'}}}>
-          <Styled.h1>{data.site.siteMetadata.title}</Styled.h1>
-        </Link>
+        <Styled.h1>
+          <Link to="/" sx={{textDecoration: 'none', color: 'inherit', ':hover': {color: 'primary'}}}>
+            {data.site.siteMetadata.title}
+          </Link>
+        </Styled.h1>
       </Box>
     </Box>
   )
