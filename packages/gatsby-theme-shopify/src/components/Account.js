@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui'
-import {useStorefront, useCustomer} from 'gatsby-theme-shopify-core'
+import {useStorefront, useCustomer, useCart} from 'gatsby-theme-shopify-core'
 
 const customerQuery = `query customer($customerAccessToken: String!) {
     customer(customerAccessToken: $customerAccessToken) {
@@ -86,7 +86,8 @@ const customerQuery = `query customer($customerAccessToken: String!) {
 
 const Account = ({accessToken}) => {
   const {loading, error, data} = useStorefront({query: customerQuery, variables: {customerAccessToken: accessToken}})
-  const [_, {logout}] = useCustomer()
+  const [{}, {logout}] = useCustomer()
+  const [{}, {emptyCart}] = useCart()
   if (loading || !data) return null
   if (error) return <div>Error!</div>
   const {customer} = data
@@ -99,7 +100,14 @@ const Account = ({accessToken}) => {
   return (
     <div>
       <h1>Hello, {customer.displayName}</h1>
-      <button type="button" onClick={logout} sx={{variant: 'buttons.secondary'}}>
+      <button
+        type="button"
+        onClick={() => {
+          emptyCart()
+          logout()
+        }}
+        sx={{variant: 'buttons.secondary'}}
+      >
         Logout
       </button>
       <p>{customer.firstName}</p>
