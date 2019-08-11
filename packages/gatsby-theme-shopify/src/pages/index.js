@@ -1,10 +1,12 @@
-import React from 'react'
+/** @jsx jsx */
+import {jsx} from 'theme-ui'
+import Layout from '../components/Layout'
 
 const IndexPage = () => {
   return (
-    <div>
-      <h1>Index Page!</h1>
-    </div>
+    <Layout>
+      <h1>Welcome home!</h1>
+    </Layout>
   )
 }
 
