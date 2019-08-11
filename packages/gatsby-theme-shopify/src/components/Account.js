@@ -90,6 +90,12 @@ const Account = ({accessToken}) => {
   if (loading || !data) return null
   if (error) return <div>Error!</div>
   const {customer} = data
+
+  // if access token is invalid force a page refresh to log the user out
+  if (!customer) {
+    window.location.reload()
+    return null
+  }
   return (
     <div>
       <h1>Hello, {customer.displayName}</h1>
