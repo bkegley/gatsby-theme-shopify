@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "private": true,
   "author": "Bryan Kegley <hi@bryankegley.me>",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "gatsby": "^2.13.51",
-    "gatsby-theme-shopify-core": "^0.0.2",
+    "gatsby-theme-shopify-core": "^0.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
