@@ -1,5 +1,5 @@
 module.exports = themeOptions => {
-  const {shopName, accessToken} = themeOptions
+  const {shopName, accessToken, ...remainingOptions} = themeOptions
 
   return {
     siteMetadata: {
@@ -11,6 +11,7 @@ module.exports = themeOptions => {
         options: {
           shopName,
           accessToken,
+          ...remainingOptions,
         },
       },
       {

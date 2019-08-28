@@ -8,7 +8,10 @@ module.exports = {
   plugins: [
     {
       resolve: 'gatsby-theme-shopify',
-      options: {shopName, accessToken},
+      options: {
+        shopName,
+        accessToken,
+      },
     },
   ],
 }
