@@ -125,7 +125,7 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
 
         Array.from({length: numberOfProductListPages}).map((_, i) => {
           createPage({
-            path: i === 0 ? '/shop' : `shop/${i + 1}`,
+            path: i === 0 ? '/products' : `/products/${i + 1}`,
             component: require.resolve(`./src/templates/ProductListPage.js`),
             context: {
               limit: productsPerPage,
@@ -184,7 +184,7 @@ exports.onCreateNode = ({node, actions}) => {
     createNodeField({
       name: 'slug',
       node,
-      value: `/shop/products/${node.handle}`,
+      value: `/products/${node.handle}`,
     })
 
     // Shopify Admin API ids are base64 decoded strings from Storefront ids
@@ -200,7 +200,7 @@ exports.onCreateNode = ({node, actions}) => {
     createNodeField({
       name: 'slug',
       node,
-      value: `/shop/collections/${node.handle}`,
+      value: `/collections/${node.handle}`,
     })
   }
 
