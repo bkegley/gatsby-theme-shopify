@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx, Flex, Box} from 'theme-ui'
+import {jsx} from 'theme-ui'
 import React from 'react'
 import {useCustomer} from 'gatsby-theme-shopify-core'
 import {navigate} from 'gatsby'

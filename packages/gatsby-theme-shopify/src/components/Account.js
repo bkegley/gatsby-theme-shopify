@@ -86,7 +86,9 @@ const customerQuery = `query customer($customerAccessToken: String!) {
 
 const Account = ({accessToken}) => {
   const {loading, error, data} = useStorefront({query: customerQuery, variables: {customerAccessToken: accessToken}})
+  // eslint-disable-next-line no-empty-pattern
   const [{}, {logout}] = useCustomer()
+  // eslint-disable-next-line no-empty-pattern
   const [{}, {emptyCart}] = useCart()
   if (loading || !data) return null
   if (error) return <div>Error!</div>

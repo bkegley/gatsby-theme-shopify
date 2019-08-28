@@ -30,6 +30,9 @@ function reducer(state, action) {
         error: action.error,
       }
     }
+    default: {
+      throw new Error('Please provide a valid action type')
+    }
   }
 }
 

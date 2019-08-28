@@ -6,7 +6,8 @@ import {useCart} from 'gatsby-theme-shopify-core'
 import Layout from './Layout'
 
 const ProductPage = ({data}) => {
-  const [_, {addToCart}] = useCart()
+  // eslint-disable-next-line no-empty-pattern
+  const [{}, {addToCart}] = useCart()
 
   const {shopifyProduct: product} = data
   const initialValues = Object.assign(...product.options.map(option => ({[option.name]: option.values[0]})), {

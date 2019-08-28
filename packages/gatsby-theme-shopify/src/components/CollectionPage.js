@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx, Flex, Box} from 'theme-ui'
+import {jsx, Flex} from 'theme-ui'
 import Layout from './Layout'
 import ProductCard from './ProductCard'
 
