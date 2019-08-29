@@ -1,11 +1,18 @@
 /** @jsx jsx */
+import React from 'react'
 import {jsx, Flex, Box, Styled} from 'theme-ui'
-import {graphql, useStaticQuery, Link} from 'gatsby'
+import {graphql, useStaticQuery, Link, navigate} from 'gatsby'
 import {useCart} from 'gatsby-theme-shopify-core'
 
 const Header = () => {
+  const [searchString, setSearchString] = React.useState('')
   const [cart] = useCart()
   const cartQuantity = cart.reduce((count, item) => count + item.quantity, 0)
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    navigate(`/search?q=${encodeURI(searchString)}`)
+  }
 
   const data = useStaticQuery(graphql`
     query HeaderQuery {
@@ -16,10 +23,21 @@ const Header = () => {
       }
     }
   `)
+
   return (
     <Box sx={{mx: 'auto', borderBottom: '1px solid lightgrey'}}>
       <Flex sx={{flexDirection: 'row', alignItems: 'center'}}>
-        <Box sx={{flex: 1}}>Search</Box>
+        <Box sx={{flex: 1}}>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              onChange={e => setSearchString(e.currentTarget.value)}
+              value={searchString}
+              placeholder="Search"
+              sx={{border: 'none', p: 2}}
+            />
+          </form>
+        </Box>
         <Box sx={{mx: 2}}>
           <Link to="/cart" sx={{textDecoration: 'none', color: 'inherit', ':hover': {color: 'primary'}}}>
             Cart ({cartQuantity})
