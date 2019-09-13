@@ -1,4 +1,5 @@
 import React from 'react'
+import fetchShopifyStorefront from '../utils/fetchShopifyStorefront'
 
 export const CartContext = React.createContext()
 
@@ -6,6 +7,19 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const UPDATE_CART_LINE_ITEM = 'UPDATE_CART_LINE_ITEM'
 const REMOVE_CART_LINE_ITEM = 'REMOVE_CART_LINE_ITEM'
 const EMPTY_CART = 'EMPTY_CART'
+
+const createCheckoutMutation = `mutation checkoutCreate($input: CheckoutCreateInput!) {
+  checkoutCreate(input: $input) {
+    checkout {
+      webUrl
+    }
+    checkoutUserErrors {
+      code
+      field
+      message
+    }
+  }
+}`
 
 const cartReducer = (cart, action) => {
   switch (action.type) {
@@ -48,7 +62,7 @@ const initialState =
     ? []
     : JSON.parse(window.localStorage.getItem('cart'))
 
-const CartProvider = ({children}) => {
+const CartProvider = ({shopName, storefrontAccessToken, children}) => {
   const [cart, dispatch] = React.useReducer(cartReducer, initialState)
 
   React.useEffect(() => {
@@ -83,7 +97,66 @@ const CartProvider = ({children}) => {
     dispatch({type: EMPTY_CART})
   }
 
-  const value = React.useMemo(() => [cart, {addToCart, updateCartLineItem, removeCartLineItem, emptyCart}], [cart])
+  const createCheckout = ({
+    allowPartialAddresses,
+    customAttributes,
+    email,
+    note,
+    presentmentCurrencyCode,
+    shippingAddress,
+  }) => {
+    const lineItems = cart.map(lineItem => {
+      const {quantity, variantId, customAttributes} = lineItem
+      return {
+        quantity,
+        variantId,
+        customAttributes,
+      }
+    })
+
+    const inputWithNull = {
+      allowPartialAddresses,
+      customAttributes,
+      email,
+      lineItems,
+      note,
+      presentmentCurrencyCode,
+      shippingAddress,
+    }
+
+    // remove null keys in input
+    const input = Object.assign(
+      ...Object.keys(inputWithNull)
+        .filter(key => inputWithNull[key])
+        .map(key => ({[key]: inputWithNull[key]})),
+    )
+
+    return new Promise((resolve, reject) => {
+      fetchShopifyStorefront({
+        shopName,
+        storefrontAccessToken,
+        query: createCheckoutMutation,
+        variables: {input},
+      })
+        .then(res => res.json())
+        .then(res => {
+          if (
+            res.errors ||
+            (res.data.checkoutCreate.checkoutUserErrors && res.data.checkoutCreate.checkoutUserErrors.length > 0)
+          ) {
+            reject(res)
+          } else {
+            resolve(res)
+          }
+        })
+        .catch(err => reject(err))
+    })
+  }
+
+  const value = React.useMemo(
+    () => [cart, {addToCart, updateCartLineItem, removeCartLineItem, emptyCart, createCheckout}],
+    [cart],
+  )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

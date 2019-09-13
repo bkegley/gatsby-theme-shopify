@@ -8,7 +8,7 @@ const ShopifyProvider = ({children, shopName, storefrontAccessToken}) => {
     throw new Error(`shopName and storefrontAccessToken are required`)
   }
   return (
-    <CartProvider>
+    <CartProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken}>
       <StorefrontProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken}>
         <CustomerProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken}>
           {children}
