@@ -43,7 +43,7 @@ const ProductPage = ({data}) => {
   })
 
   const submitForm = () => {
-    addToCart({...variant, quantity: values.quantity})
+    addToCart({variantId: variant.shopifyId, quantity: values.quantity, product})
   }
 
   const options = product.options

@@ -25,12 +25,12 @@ const cartReducer = (cart, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       // check if line item already exists
-      const existingLineItem = cart.find(item => item.shopifyId === action.lineItem.shopifyId)
+      const existingLineItem = cart.find(item => item.variantId === action.lineItem.variantId)
       return (
         cart
           .map(item => {
             // update quantity if line item already exists
-            if (item.shopifyId === action.lineItem.shopifyId) {
+            if (item.variantId === action.lineItem.variantId) {
               return {...item, quantity: existingLineItem.quantity + action.lineItem.quantity}
             }
             return item
@@ -42,11 +42,13 @@ const cartReducer = (cart, action) => {
     }
     case UPDATE_CART_LINE_ITEM: {
       return cart.map(item => {
-        return item.shopifyId !== action.lineItemId ? item : action.lineItem
+        return item.variantId !== action.variantId
+          ? item
+          : {...item, quantity: action.quantity, customAttributes: action.customAttributes}
       })
     }
     case REMOVE_CART_LINE_ITEM: {
-      return cart.filter(item => item.shopifyId !== action.lineItemId)
+      return cart.filter(item => item.variantId !== action.variantId)
     }
     case EMPTY_CART: {
       return []
@@ -69,14 +71,15 @@ const CartProvider = ({shopName, storefrontAccessToken, children}) => {
     window.localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  const addToCart = ({shopifyId, quantity, ...remaining}) => {
-    if (!shopifyId || (!quantity && quantity !== 0)) {
-      throw new Error('shopifyId and quantity are required')
+  const addToCart = ({variantId, quantity, customAttributes, product}) => {
+    if (!variantId || (!quantity && quantity !== 0)) {
+      throw new Error('variantId and quantity are required')
     }
     const lineItem = {
-      shopifyId,
+      variantId,
       quantity: typeof quantity === 'number' ? quantity : parseInt(quantity),
-      ...remaining,
+      customAttributes,
+      product,
     }
 
     dispatch({
@@ -85,12 +88,12 @@ const CartProvider = ({shopName, storefrontAccessToken, children}) => {
     })
   }
 
-  const updateCartLineItem = ({lineItem, lineItemId}) => {
-    dispatch({type: UPDATE_CART_LINE_ITEM, lineItemId, lineItem})
+  const updateCartLineItem = ({quantity, variantId, customAttributes}) => {
+    dispatch({type: UPDATE_CART_LINE_ITEM, variantId, quantity, customAttributes})
   }
 
-  const removeCartLineItem = lineItemId => {
-    dispatch({type: REMOVE_CART_LINE_ITEM, lineItemId})
+  const removeCartLineItem = variantId => {
+    dispatch({type: REMOVE_CART_LINE_ITEM, variantId})
   }
 
   const emptyCart = () => {

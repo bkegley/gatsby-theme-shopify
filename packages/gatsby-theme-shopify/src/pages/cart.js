@@ -8,25 +8,27 @@ const Cart = () => {
   const [cart, {updateCartLineItem, removeCartLineItem}] = useCart()
 
   const lineItems = cart.map(item => {
+    const variant = item.product.variants.find(variant => variant.shopifyId === item.variantId)
+    console.log({variant})
     return (
-      <Flex key={item.shopifyId} sx={{flexDirection: ['column', 'column', 'row', 'row'], alignItems: 'center'}}>
+      <Flex key={item.variantId} sx={{flexDirection: ['column', 'column', 'row', 'row'], alignItems: 'center'}}>
         <Box sx={{flex: 1, display: ['none', 'none', 'block', 'block']}}>
-          {item.image ? <Image fluid={item.image.localFile.childImageSharp.fluid} /> : null}
+          {variant.image ? <Image fluid={variant.image.localFile.childImageSharp.fluid} /> : null}
         </Box>
         <Box sx={{flex: 2}}>
-          <label htmlFor={item.variantStorefrontId}>
-            <p sx={{fontWeight: 'bold', fontSize: 2}}>{item.title}</p>
+          <label htmlFor={item.variantId}>
+            <p sx={{fontWeight: 'bold', fontSize: 2}}>{variant.title}</p>
           </label>
           <Flex flexDirection="row" alignItems="center">
             <Box>
               <input
-                name={item.variantStorefrontId}
+                name={item.variantId}
                 value={item.quantity}
                 type="number"
                 onChange={e =>
                   updateCartLineItem({
-                    lineItemId: item.shopifyId,
-                    lineItem: {...item, quantity: parseInt(e.currentTarget.value)},
+                    variantId: item.variantId,
+                    quantity: parseInt(e.currentTarget.value),
                   })
                 }
               />
@@ -35,7 +37,7 @@ const Cart = () => {
               <button
                 sx={{variant: 'buttons.secondary'}}
                 type="button"
-                onClick={() => removeCartLineItem(item.shopifyId)}
+                onClick={() => removeCartLineItem(item.variantId)}
               >
                 remove
               </button>
