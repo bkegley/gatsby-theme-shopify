@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Image from 'gatsby-image'
 
 const Cart = () => {
-  const [cart, {updateCartLineItem, removeCartLineItem}] = useCart()
+  const [cart, {updateCartLineItem, removeCartLineItem, createCheckout}] = useCart()
 
   const lineItems = cart.map(item => {
     const variant = item.product.variants.find(variant => variant.shopifyId === item.variantId)
@@ -53,6 +53,26 @@ const Cart = () => {
       <div>
         <h1>Cart</h1>
         {lineItems}
+        <div>
+          <button
+            sx={{variant: 'buttons.primary', my: 4}}
+            onClick={() => {
+              createCheckout()
+                .then(res => {
+                  if (
+                    res.data.checkoutCreate.checkoutUserErrors &&
+                    res.data.checkoutCreate.checkoutUserErrors.length > 0
+                  ) {
+                    console.log(res)
+                  }
+                  window.location.replace(res.data.checkoutCreate.checkout.webUrl)
+                })
+                .catch(err => console.log({err}))
+            }}
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </Layout>
   )
