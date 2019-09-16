@@ -4,7 +4,6 @@ import {Link} from 'gatsby'
 import Customer from '../components/Customer'
 
 const IndexPage = () => {
-  const cart = useCart()
   const [{error, loading, data}, {login, logout, updatePassword}] = useCustomer()
 
   const [values, setValues] = React.useState({})
