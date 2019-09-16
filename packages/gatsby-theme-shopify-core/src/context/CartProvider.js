@@ -107,7 +107,7 @@ const CartProvider = ({shopName, storefrontAccessToken, children}) => {
     note,
     presentmentCurrencyCode,
     shippingAddress,
-  }) => {
+  } = {}) => {
     const lineItems = cart.map(lineItem => {
       const {quantity, variantId, customAttributes} = lineItem
       return {
