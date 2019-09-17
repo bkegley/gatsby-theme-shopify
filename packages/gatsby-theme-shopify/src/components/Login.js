@@ -8,7 +8,6 @@ const Login = () => {
   const [{data}, {login}] = useCustomer()
   if (data && data.accessToken) {
     navigate('/account')
-    return null
   }
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
