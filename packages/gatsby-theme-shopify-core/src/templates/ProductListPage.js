@@ -7,8 +7,13 @@ const ProductListWrapper = props => {
 }
 
 export const query = graphql`
-  query retailProductListPageQuery($limit: Int, $skip: Int) {
-    allShopifyProduct(limit: $limit, skip: $skip) {
+  query retailProductListPageQuery(
+    $filter: ShopifyProductFilterInput
+    $limit: Int
+    $skip: Int
+    $sort: ShopifyProductSortInput
+  ) {
+    allShopifyProduct(filter: $filter, limit: $limit, skip: $skip, sort: $sort) {
       edges {
         node {
           id

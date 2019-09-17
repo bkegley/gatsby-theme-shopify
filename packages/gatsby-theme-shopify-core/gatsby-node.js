@@ -1,25 +1,43 @@
 exports.createPages = ({graphql, actions}, themeOptions) => {
   const {createPage} = actions
 
-  const {articlesPerPage = 6, productsPerPage = 12, modules} = themeOptions
+  const {
+    articlesPerPage = 6,
+    productsPerPage = 12,
+    modules = ['articles', 'policies', 'products', 'collections'],
+  } = themeOptions
+
+  const defaultModule = {
+    filter: {},
+    sort: null,
+  }
+
+  const moduleObject = Object.assign(
+    ...modules.map(moduleItem => {
+      return typeof moduleItem === 'string' ? {[moduleItem]: defaultModule} : Object.assign(defaultModule, moduleItem)
+    }),
+  )
 
   return new Promise((resolve, reject) => {
-    if (!modules || modules.includes('articles')) {
+    if (moduleObject.articles) {
       // ==== ARTICLE PAGES (SHOPIFY) ====
-      graphql(`
-        {
-          allShopifyArticle {
-            edges {
-              node {
-                id
-                fields {
-                  slug
+      graphql(
+        `
+          query allShopifyArticle($filter: ShopifyArticleFilterInput, $sort: ShopifyArticleSortInput) {
+            allShopifyArticle(filter: $filter, sort: $sort) {
+              edges {
+                node {
+                  id
+                  fields {
+                    slug
+                  }
                 }
               }
             }
           }
-        }
-      `).then(result => {
+        `,
+        moduleObject.articles,
+      ).then(result => {
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
@@ -45,6 +63,8 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
             context: {
               limit: articlesPerPage,
               skip: i * articlesPerPage,
+              filter: moduleObject.articles.filter,
+              sort: moduleObject.articles.sort,
               pageNumber: i + 1,
               numberOfPages,
             },
@@ -54,11 +74,11 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
       // ==== END ARTICLE PAGES (SHOPIFY) ====
     }
 
-    if (!modules || modules.includes('policies')) {
+    if (moduleObject.policies) {
       // ==== CREATE POLICY PAGES ====
       graphql(`
-        {
-          allShopifyShopPolicy {
+        query allShopifyShopPolicy($filter: ShopifyShopPolicyFilterInput, $sort: ShopifyShopPolicySortInput) {
+          allShopifyShopPolicy(filter: $filter, sort: $sort) {
             edges {
               node {
                 id
@@ -87,23 +107,26 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
       // ==== END POLICY PAGES ====
     }
 
-    if (!modules || modules.includes('products')) {
+    if (moduleObject.products) {
       // ==== PRODUCT PAGES (SHOPIFY) ====
-      graphql(`
-        {
-          allShopifyProduct {
-            edges {
-              node {
-                id
-                handle
-                fields {
-                  slug
+      graphql(
+        `
+          query allShopifyProduct($filter: ShopifyProductFilterInput, $sort: ShopifyProductSortInput) {
+            allShopifyProduct(filter: $filter, sort: $sort) {
+              edges {
+                node {
+                  id
+                  handle
+                  fields {
+                    slug
+                  }
                 }
               }
             }
           }
-        }
-      `).then(result => {
+        `,
+        moduleObject.products,
+      ).then(result => {
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
@@ -130,6 +153,8 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
             context: {
               limit: productsPerPage,
               skip: i * productsPerPage,
+              filter: moduleObject.products.filter,
+              sort: moduleObject.products.sort,
               pageNumber: i + 1,
               numberOfProductListPages,
             },
@@ -139,11 +164,11 @@ exports.createPages = ({graphql, actions}, themeOptions) => {
       // ==== END PRODUCT PAGES (SHOPIFY) ====
     }
 
-    if (!modules || modules.includes('collections')) {
+    if (moduleObject.collections) {
       // ==== COLLECTION PAGES (SHOPIFY) ====
       graphql(`
-        {
-          allShopifyCollection {
+        query allShopifyCollection($filter: ShopifyCollectionFilterInput, $sort: ShopifyCollectionSortInput) {
+          allShopifyCollection(filter: $filter, sort: $sort) {
             edges {
               node {
                 id

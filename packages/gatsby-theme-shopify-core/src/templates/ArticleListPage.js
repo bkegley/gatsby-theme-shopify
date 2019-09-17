@@ -8,8 +8,13 @@ const ArticleListPageWrapper = props => {
 }
 
 export const query = graphql`
-  query allShopifyArticleQuery($limit: Int, $skip: Int) {
-    allShopifyArticle(limit: $limit, skip: $skip) {
+  query allShopifyArticleQuery(
+    $filter: ShopifyArticleFilterInput
+    $limit: Int
+    $skip: Int
+    $sort: ShopifyArticleSortInput
+  ) {
+    allShopifyArticle(filter: $filter, limit: $limit, skip: $skip, sort: $sort) {
       edges {
         node {
           id
