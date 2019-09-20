@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx, Flex} from 'theme-ui'
+import {jsx, Styled, Flex} from 'theme-ui'
 import Layout from './Layout'
 import ProductCard from './ProductCard'
 
@@ -18,8 +18,8 @@ const CollectionPage = props => {
         <Flex sx={{flexWrap: 'wrap'}}>{products}</Flex>
       ) : (
         <div>
-          <span>Bummer!</span>
-          <span>Your search came up empty. Keep searching.</span>
+          <Styled.p>Bummer!</Styled.p>
+          <Styled.p>Your search came up empty. Keep searching.</Styled.p>
         </div>
       )}
     </Layout>

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx, Flex, Box} from 'theme-ui'
+import {jsx, Styled, Flex, Box} from 'theme-ui'
 import {useCart} from 'gatsby-theme-shopify-core'
 import Layout from '../components/Layout'
 import Image from 'gatsby-image'
@@ -17,7 +17,7 @@ const Cart = () => {
         </Box>
         <Box sx={{flex: 2}}>
           <label htmlFor={item.variantId}>
-            <p sx={{fontWeight: 'bold', fontSize: 2}}>{variant.title}</p>
+            <Styled.p sx={{fontWeight: 'bold', fontSize: 2}}>{variant.title}</Styled.p>
           </label>
           <Flex flexDirection="row" alignItems="center">
             <Box>
@@ -51,7 +51,7 @@ const Cart = () => {
   return (
     <Layout>
       <div>
-        <h1>Cart</h1>
+        <Styled.h1>Cart</Styled.h1>
         {lineItems}
         <div>
           <button

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from 'theme-ui'
+import {jsx, Styled} from 'theme-ui'
 import Layout from './Layout'
 
 const PolicyPage = props => {
@@ -9,7 +9,7 @@ const PolicyPage = props => {
   return (
     <Layout>
       <div>
-        <h1>{shopifyShopPolicy.title}</h1>
+        <Styled.h1>{shopifyShopPolicy.title}</Styled.h1>
         <div dangerouslySetInnerHTML={{__html: shopifyShopPolicy.body}} />
       </div>
     </Layout>

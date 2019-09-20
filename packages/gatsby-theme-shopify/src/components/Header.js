@@ -50,7 +50,7 @@ const Header = () => {
         </Box>
       </Flex>
       <Box>
-        <Styled.h1>
+        <Styled.h1 as="h2">
           <Link to="/" sx={{textDecoration: 'none', color: 'inherit', ':hover': {color: 'primary'}}}>
             {data.site.siteMetadata.title}
           </Link>

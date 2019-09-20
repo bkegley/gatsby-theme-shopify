@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from 'theme-ui'
+import {jsx, Styled} from 'theme-ui'
 import {useStorefront, useCustomer, useCart} from 'gatsby-theme-shopify-core'
 
 const customerQuery = `query customer($customerAccessToken: String!) {
@@ -100,8 +100,8 @@ const Account = ({accessToken}) => {
     return null
   }
   return (
-    <div>
-      <h1>Hello, {customer.displayName}</h1>
+    <>
+      <Styled.h1>Hello, {customer.displayName}</Styled.h1>
       <button
         type="button"
         onClick={() => {
@@ -112,11 +112,11 @@ const Account = ({accessToken}) => {
       >
         Logout
       </button>
-      <p>{customer.firstName}</p>
-      <p>{customer.lastName}</p>
-      <p>{customer.email}</p>
-      <p>{customer.phone}</p>
-    </div>
+      <Styled.p>{customer.firstName}</Styled.p>
+      <Styled.p>{customer.lastName}</Styled.p>
+      <Styled.p>{customer.email}</Styled.p>
+      <Styled.p>{customer.phone}</Styled.p>
+    </>
   )
 }
 

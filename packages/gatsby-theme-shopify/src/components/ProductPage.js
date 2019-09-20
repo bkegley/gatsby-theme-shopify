@@ -78,9 +78,9 @@ const ProductPage = ({data}) => {
         <Box sx={{flex: 1, mb: 4}}>
           <Styled.h1>{product.title}</Styled.h1>
           <div>
-            <p sx={{fontSize: 3}}>
+            <Styled.p sx={{fontSize: 3}}>
               {parseInt(variant.price).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
-            </p>
+            </Styled.p>
             <Flex>{options}</Flex>
             <Box sx={{mb: 2, mr: 3}}>
               <div sx={{mb: 1}}>

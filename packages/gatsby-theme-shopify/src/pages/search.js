@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from 'theme-ui'
+import {jsx, Styled} from 'theme-ui'
 import Layout from '../components/Layout'
 import {graphql, Link} from 'gatsby'
 
@@ -23,7 +23,7 @@ const SearchPage = ({data}) => {
 
   return (
     <Layout>
-      <h2>Products</h2>
+      <Styled.h2>Products</Styled.h2>
       {productResults.map(({node: product}) => {
         return (
           <div key={product.id}>
@@ -31,7 +31,7 @@ const SearchPage = ({data}) => {
           </div>
         )
       })}
-      <h2>Articles</h2>
+      <Styled.h2>Articles</Styled.h2>
       {articleResults.map(({node: article}) => {
         return (
           <div key={article.id}>

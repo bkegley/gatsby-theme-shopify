@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {jsx} from 'theme-ui'
+import {jsx, Styled} from 'theme-ui'
 import Layout from './Layout'
 
 const ArticlePage = props => {
@@ -8,7 +8,7 @@ const ArticlePage = props => {
   } = props
   return (
     <Layout>
-      <h1>{article.title}</h1>
+      <Styled.h1>{article.title}</Styled.h1>
       <div dangerouslySetInnerHTML={{__html: article.contentHtml}} />
     </Layout>
   )
