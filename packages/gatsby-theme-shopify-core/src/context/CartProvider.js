@@ -65,6 +65,9 @@ const initialState =
     : JSON.parse(window.localStorage.getItem('cart'))
 
 const CartProvider = ({shopName, storefrontAccessToken, children}) => {
+  if (!shopName || !storefrontAccessToken) {
+    throw new Error(`shopName and storefrontAccessToken are required`)
+  }
   const [cart, dispatch] = React.useReducer(cartReducer, initialState)
 
   React.useEffect(() => {

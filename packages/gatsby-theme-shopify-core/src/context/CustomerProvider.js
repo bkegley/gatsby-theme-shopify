@@ -164,6 +164,9 @@ function reducer(state, action) {
 }
 
 const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
+  if (!shopName || !storefrontAccessToken) {
+    throw new Error(`shopName and storefrontAccessToken are required`)
+  }
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const {error, loading, data, checkedCredentials} = state
 
