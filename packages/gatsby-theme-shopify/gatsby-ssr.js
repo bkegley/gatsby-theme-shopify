@@ -1,12 +1,10 @@
 import React from 'react'
 import {ShopifyProvider} from 'gatsby-theme-shopify-core'
 
-export const wrapRootElement = ({element}) => {
+export const wrapRootElement = ({element}, themeOptions) => {
+  const {shopName, accessToken, endpoint} = themeOptions
   return (
-    <ShopifyProvider
-      shopName={process.env.GATSBY_SHOP_NAME}
-      storefrontAccessToken={process.env.GATSBY_STOREFRONT_ACCESS_TOKEN}
-    >
+    <ShopifyProvider shopName={shopName} storefrontAccessToken={accessToken} endpoint={endpoint}>
       {element}
     </ShopifyProvider>
   )
