@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Image from 'gatsby-image'
 
 const Cart = () => {
-  const [cart, {updateCartLineItem, removeCartLineItem, createCheckout}] = useCart()
+  const {cart, updateCartLineItem, removeCartLineItem, createCheckout} = useCart()
 
   const lineItems = cart.map(item => {
     const variant = item.product.variants.find(variant => variant.shopifyId === item.variantId)

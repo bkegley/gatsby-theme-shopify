@@ -1,10 +1,10 @@
 import React from 'react'
-import {useCart, useCustomer} from 'gatsby-theme-shopify-core'
+import {useCustomer} from 'gatsby-theme-shopify-core'
 import {Link} from 'gatsby'
 import Customer from '../components/Customer'
 
 const IndexPage = () => {
-  const [{error, loading, data}, {login, logout, updatePassword}] = useCustomer()
+  const {error, loading, data, login, logout, updatePassword} = useCustomer()
 
   const [values, setValues] = React.useState({})
   const [password, setPassword] = React.useState('')

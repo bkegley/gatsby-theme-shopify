@@ -161,7 +161,14 @@ const CartProvider = ({shopName, accessToken, endpoint, children}) => {
   }
 
   const value = React.useMemo(
-    () => [cart, {addToCart, updateCartLineItem, removeCartLineItem, emptyCart, createCheckout}],
+    () => ({
+      cart,
+      addToCart,
+      updateCartLineItem,
+      removeCartLineItem,
+      emptyCart,
+      createCheckout,
+    }),
     [cart],
   )
 
