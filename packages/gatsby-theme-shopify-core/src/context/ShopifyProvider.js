@@ -3,14 +3,14 @@ import CartProvider from './CartProvider'
 import CustomerProvider from './CustomerProvider'
 import StorefrontProvider from './StorefrontProvider'
 
-const ShopifyProvider = ({children, shopName, storefrontAccessToken, endpoint}) => {
-  if ((!endpoint && !shopName) || !storefrontAccessToken) {
-    throw new Error(`Either an endpoint or shopName and storefrontAccessToken are required`)
+const ShopifyProvider = ({children, shopName, accessToken, endpoint}) => {
+  if ((!endpoint && !shopName) || !accessToken) {
+    throw new Error(`Either an endpoint or shopName and accessToken are required`)
   }
   return (
-    <CartProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken} endpoint={endpoint}>
-      <StorefrontProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken} endpoint={endpoint}>
-        <CustomerProvider shopName={shopName} storefrontAccessToken={storefrontAccessToken} endpoint={endpoint}>
+    <CartProvider shopName={shopName} accessToken={accessToken} endpoint={endpoint}>
+      <StorefrontProvider shopName={shopName} accessToken={accessToken} endpoint={endpoint}>
+        <CustomerProvider shopName={shopName} accessToken={accessToken} endpoint={endpoint}>
           {children}
         </CustomerProvider>
       </StorefrontProvider>

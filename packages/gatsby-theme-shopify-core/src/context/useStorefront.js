@@ -47,13 +47,13 @@ const useStorefront = ({query, variables, api = '2019-07'}) => {
   if (!context) {
     throw new Error('useStorefront must be wrapped in a StorefrontProvider')
   }
-  const {shopName, storefrontAccessToken, endpoint} = context
+  const {shopName, accessToken, endpoint} = context
 
   const [state, dispatch] = React.useReducer(reducer, initialState)
 
   React.useEffect(() => {
     dispatch({type: FETCH_INIT})
-    fetchShopifyStorefront({shopName, storefrontAccessToken, endpoint, query, variables})
+    fetchShopifyStorefront({shopName, accessToken, endpoint, query, variables})
       .then(res => res.json())
       .then(res => {
         if (res.errors) {
@@ -65,7 +65,7 @@ const useStorefront = ({query, variables, api = '2019-07'}) => {
       .catch(err => {
         dispatch({type: FETCH_ERROR, error: err})
       })
-  }, [query, api, shopName, storefrontAccessToken, endpoint])
+  }, [query, api, shopName, accessToken, endpoint])
 
   return state
 }

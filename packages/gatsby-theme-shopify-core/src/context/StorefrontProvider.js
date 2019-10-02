@@ -2,15 +2,11 @@ import React from 'react'
 
 export const StorefrontContext = React.createContext()
 
-const StorefrontProvider = ({shopName, storefrontAccessToken, endpoint, children}) => {
-  if ((!endpoint && !shopName) || !storefrontAccessToken) {
-    throw new Error(`Either an endpoint or shopName and storefrontAccessToken are required`)
+const StorefrontProvider = ({shopName, accessToken, endpoint, children}) => {
+  if ((!endpoint && !shopName) || !accessToken) {
+    throw new Error(`Either an endpoint or shopName and accessToken are required`)
   }
-  const value = React.useMemo(() => ({shopName, storefrontAccessToken, endpoint}), [
-    shopName,
-    storefrontAccessToken,
-    endpoint,
-  ])
+  const value = React.useMemo(() => ({shopName, accessToken, endpoint}), [shopName, accessToken, endpoint])
   return <StorefrontContext.Provider value={value}>{children}</StorefrontContext.Provider>
 }
 

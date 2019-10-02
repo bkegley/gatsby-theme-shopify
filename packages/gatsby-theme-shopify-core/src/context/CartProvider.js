@@ -64,9 +64,9 @@ const initialState =
     ? []
     : JSON.parse(window.localStorage.getItem('cart'))
 
-const CartProvider = ({shopName, storefrontAccessToken, endpoint, children}) => {
-  if ((!endpoint && !shopName) || !storefrontAccessToken) {
-    throw new Error(`Either an endpoint or shopName and storefrontAccessToken are required`)
+const CartProvider = ({shopName, accessToken, endpoint, children}) => {
+  if ((!endpoint && !shopName) || !accessToken) {
+    throw new Error(`Either an endpoint or shopName and accessToken are required`)
   }
   const [cart, dispatch] = React.useReducer(cartReducer, initialState)
 
@@ -140,7 +140,7 @@ const CartProvider = ({shopName, storefrontAccessToken, endpoint, children}) => 
     return new Promise((resolve, reject) => {
       fetchShopifyStorefront({
         shopName,
-        storefrontAccessToken,
+        accessToken,
         endpoint,
         query: createCheckoutMutation,
         variables: {input},
