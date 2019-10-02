@@ -5,7 +5,7 @@ import {useCustomer} from 'gatsby-theme-shopify-core'
 import {navigate} from 'gatsby'
 
 const Login = () => {
-  const [{data}, {login}] = useCustomer()
+  const {data, login} = useCustomer()
   if (data && data.accessToken) {
     navigate('/account')
   }

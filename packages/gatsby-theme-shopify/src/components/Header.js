@@ -6,7 +6,7 @@ import {useCart} from 'gatsby-theme-shopify-core'
 
 const Header = () => {
   const [searchString, setSearchString] = React.useState('')
-  const [cart] = useCart()
+  const {cart} = useCart()
   const cartQuantity = cart.reduce((count, item) => count + item.quantity, 0)
 
   const handleSubmit = e => {

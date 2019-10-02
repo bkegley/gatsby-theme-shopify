@@ -86,10 +86,9 @@ const customerQuery = `query customer($customerAccessToken: String!) {
 
 const Account = ({accessToken}) => {
   const {loading, error, data} = useStorefront({query: customerQuery, variables: {customerAccessToken: accessToken}})
-  // eslint-disable-next-line no-empty-pattern
-  const [{}, {logout}] = useCustomer()
-  // eslint-disable-next-line no-empty-pattern
-  const [{}, {emptyCart}] = useCart()
+  const {logout} = useCustomer()
+  const {emptyCart} = useCart()
+
   if (loading || !data) return null
   if (error) return <div>Error!</div>
   const {customer} = data
@@ -99,8 +98,9 @@ const Account = ({accessToken}) => {
     window.location.reload()
     return null
   }
+
   return (
-    <>
+    <div>
       <Styled.h1>Hello, {customer.displayName}</Styled.h1>
       <button
         type="button"
@@ -116,7 +116,7 @@ const Account = ({accessToken}) => {
       <Styled.p>{customer.lastName}</Styled.p>
       <Styled.p>{customer.email}</Styled.p>
       <Styled.p>{customer.phone}</Styled.p>
-    </>
+    </div>
   )
 }
 
