@@ -74,7 +74,7 @@ const CartProvider = ({shopName, accessToken, endpoint, children}) => {
     window.localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  const addToCart = ({variantId, quantity, customAttributes, product}) => {
+  const addToCart = ({variantId, quantity, customAttributes, ...remaining}) => {
     if (!variantId || (!quantity && quantity !== 0)) {
       throw new Error('variantId and quantity are required')
     }
@@ -82,7 +82,7 @@ const CartProvider = ({shopName, accessToken, endpoint, children}) => {
       variantId,
       quantity: typeof quantity === 'number' ? quantity : parseInt(quantity),
       customAttributes,
-      product,
+      ...remaining,
     }
 
     dispatch({
