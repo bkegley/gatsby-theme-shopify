@@ -121,22 +121,48 @@ module.exports = {
 
 `useCart` provides a cart object and functions to add/modify/remove items from the cart and create a checkout. For a detailed explanation for using cart functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecart).
 
+<!-- prettier-ignore-start -->
 ```js
-const {cart, addToCart, updateCartLineItem, removeCartLineItem, emptyCart, createCheckout} = useCart()
+  const {
+    cart,
+    addToCart,
+    updateCartLineItem,
+    removeCartLineItem,
+    emptyCart,
+    createCheckout
+  } = useCart()
 ```
+<!-- prettier-ignore-end -->
 
 ### `useCustomer`
 
 `useCustomer` manages customer logged in state with functions for logging in/out and updating their password. For a detailed explanation for using customer functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecustomer).
 
+<!-- prettier-ignore-start -->
 ```js
-const {loading, error, data, login, logout, updatePassword} = useCustomer()
+  const {
+    loading,
+    error,
+    data,
+    login,
+    logout,
+    updatePassword
+  } = useCustomer()
 ```
+<!-- prettier-ignore-end -->
 
 ### `useStorefront`
 
+`useCustomer` manages customer logged in state with functions for logging in/out and updating their password. For a detailed explanation for using customer functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecustomer).
+
+<!-- prettier-ignore-start -->
 ```js
-const {loading, error, data} = useStorefront()
+  const {
+    loading,
+    error,
+    data,
+  } = useStorefront()
 ```
+<!-- prettier-ignore-end -->
 
 `useStorefront` allows for one-off queries or mutations to the Shopify Storefront API. This can be especially useful for retrieving data that should be dynamic (such as inventory quantities). For a detailed explanation for see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usestorefront).
