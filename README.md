@@ -86,7 +86,6 @@ module.exports = {
 
 `gatsby-theme-shopify` is comprised of two themes - `gatsby-theme-shopify-core` and `gatsby-theme-shopify`. The core theme is responsible for data fetching and page creation. `gatsby-theme-shopify` is a lightly styled layer over core utilizing [Theme UI](https://theme-ui.com).
 
-
 ```txt
 └── src
     ├── components
@@ -120,45 +119,24 @@ module.exports = {
 
 ### `useCart`
 
-`useCart` provides a cart object and functions to add/modify/remove items from the cart and create a checkout. For a detailed explanation for using cart functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecart)
+`useCart` provides a cart object and functions to add/modify/remove items from the cart and create a checkout. For a detailed explanation for using cart functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecart).
 
 ```js
-  const {
-    cart,
-    addToCart,
-    updateCartLineItem,
-    removeCartLineItem,
-    emptyCart,
-    createCheckout
-  } = useCart()
+const {cart, addToCart, updateCartLineItem, removeCartLineItem, emptyCart, createCheckout} = useCart()
 ```
 
 ### `useCustomer`
 
-`useCustomer` manages customer logged in state with functions for logging in/out and updating their password. For a detailed explanation for using customer functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecustomer)
+`useCustomer` manages customer logged in state with functions for logging in/out and updating their password. For a detailed explanation for using customer functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecustomer).
 
 ```js
-  const {
-    loading,
-    error,
-    data,
-    login,
-    logout,
-    updatePassword
-  } = useCustomer()
+const {loading, error, data, login, logout, updatePassword} = useCustomer()
 ```
 
 ### `useStorefront`
 
-`useCustomer` manages customer logged in state with functions for logging in/out and updating their password. For a detailed explanation for using customer functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecustomer)
-
 ```js
-  const {
-    loading,
-    error,
-    data,
-  } = useStorefront()
+const {loading, error, data} = useStorefront()
 ```
 
-
-`useStorefront` allows for one-off queries or mutations to the Shopify Storefront API. This can be especially useful for retrieving data that should be dynamic (such as inventory quantities). For a detailed explanation for see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usestorefront)
+`useStorefront` allows for one-off queries or mutations to the Shopify Storefront API. This can be especially useful for retrieving data that should be dynamic (such as inventory quantities). For a detailed explanation for see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usestorefront).
