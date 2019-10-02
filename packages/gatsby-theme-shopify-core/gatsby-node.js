@@ -1,22 +1,22 @@
-exports.createPages = ({graphql, actions}, themeOptions) => {
-  const {createPage} = actions
-
-  const {
-    articlesPerPage = 6,
-    productsPerPage = 12,
-    modules = ['articles', 'policies', 'products', 'collections'],
-  } = themeOptions
-
+const createModuleObject = (modules = ['articles', 'policies', 'products', 'collections']) => {
   const defaultModule = {
     filter: {},
     sort: null,
   }
 
-  const moduleObject = Object.assign(
+  return Object.assign(
     ...modules.map(moduleItem => {
       return typeof moduleItem === 'string' ? {[moduleItem]: defaultModule} : Object.assign(defaultModule, moduleItem)
     }),
   )
+}
+
+exports.createPages = ({graphql, actions}, themeOptions) => {
+  const {createPage} = actions
+
+  const {articlesPerPage = 6, productsPerPage = 12, modules} = themeOptions
+
+  const moduleObject = createModuleObject(modules)
 
   return new Promise((resolve, reject) => {
     if (moduleObject.articles) {
