@@ -6,7 +6,6 @@ import {useCart} from 'gatsby-theme-shopify-core'
 import Layout from './Layout'
 
 const ProductPage = ({data}) => {
-  // eslint-disable-next-line no-empty-pattern
   const {addToCart} = useCart()
 
   const {shopifyProduct: product} = data
