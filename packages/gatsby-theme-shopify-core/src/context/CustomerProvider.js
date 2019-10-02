@@ -235,7 +235,7 @@ const CustomerProvider = ({shopName, accessToken, endpoint, children}) => {
               .then(res => res.json())
               .then(res => {
                 if (
-                  res.errrors ||
+                  res.errors ||
                   (res.data.customerAccessTokenCreate.customerUserErrors &&
                     res.data.customerAccessTokenCreate.customerUserErrors.length > 0)
                 ) {
