@@ -2,7 +2,7 @@
 
 `gatsby-theme-shopify` is a Gatsby theme for quickly bootstrapping a static Shopify site. The theme extracts the Gatsby configuration for loading Shopify assets and provides functionality for managing customers and a shopping cart.
 
-- [gatsby-theme-shopify](#gatsby-theme-shopify)
+<!-- prettier-ignore-start -->
   - [Motivation](#motivation)
   - [Getting Started](#getting-started)
   - [Usage](#usage)
@@ -12,6 +12,8 @@
     - [`useCart`](#usecart)
     - [`useCustomer`](#usecustomer)
     - [`useStorefront`](#usestorefront)
+<!-- prettier-ignore-end -->
+
 
 ## Motivation
 
@@ -55,7 +57,7 @@ module.exports = {
 
 **`modules`**
 
-It's possible that you would want to filter certain items (such as wholesale products) during the build pipeline. `modules` gives you control over GraphQL queries during `gatsby-node`'s `createPages` lifecycle. The default build s the site with all nodes from all content types (products, collections, articles, and policies). `modules` accepts an array of either strings or objects with a key fo the content type. Objects can set `filter` and `sort`.
+It's possible that you would want to filter certain items (such as wholesale products) during the build pipeline. `modules` gives you control over GraphQL queries during `gatsby-node`'s `createPages` lifecycle. The default builds the site with all nodes from all content types (products, collections, articles, and policies). `modules` accepts an array of either strings or objects with a key of the content type. Objects can set `filter` and `sort`.
 
 ```js
 // gatsby-config.js
@@ -84,7 +86,10 @@ module.exports = {
 
 ### Shadowing
 
-`gatsby-theme-shopify` is comprised of two themes - `gatsby-theme-shopify-core` and `gatsby-theme-shopify`. The core theme is responsible for data fetching and page creation. `gatsby-theme-shopify` is a lightly styled layer over core utilizing [Theme UI](https://theme-ui.com).
+`gatsby-theme-shopify` is comprised of two themes - `gatsby-theme-shopify-core` and `gatsby-theme-shopify`. The core theme is responsible for data fetching and page creation. `gatsby-theme-shopify` is a lightly styled layer over core utilizing [Theme UI](https://theme-ui.com). The intention is that these files would be shadowed in creating your own Shopify store.
+
+**File Tree**
+The following is the file tree for `gatsby-theme-shopify` to allow component shadowing.
 
 ```txt
 └── src
@@ -117,6 +122,10 @@ module.exports = {
 
 `gatsby-theme-shopify` exports three hooks to help build your site.
 
+```js
+import {useCart, useCustomer, useStorefront} from 'gatsby-theme-shopify'
+```
+
 ### `useCart`
 
 `useCart` provides a cart object and functions to add/modify/remove items from the cart and create a checkout. For a detailed explanation for using cart functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecart).
@@ -133,6 +142,37 @@ module.exports = {
   } = useCart()
 ```
 <!-- prettier-ignore-end -->
+
+#### addToCart
+
+**Example**
+
+```js
+const product = {
+  variantId: '12345',
+  quantity: 1,
+  customAttributes: [
+    {
+      key: 'key',
+      value: 'value',
+    },
+  ],
+  ...additionalProperties,
+}
+
+addToCart(product)
+```
+
+**Params**
+
+options
+
+| Key                       | Required | Description                                                                                                                                            |
+| ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `variantId`               | true     | The Shopify variant ID                                                                                                                                 |
+| `quantity`                | true     | Quantity of items                                                                                                                                      |
+| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here](https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
+| `...additionalProperties` | false    | Any other information to store on the cart line item (e.g. the product)                                                                                |
 
 ### `useCustomer`
 
@@ -165,4 +205,4 @@ module.exports = {
 ```
 <!-- prettier-ignore-end -->
 
-`useStorefront` allows for one-off queries or mutations to the Shopify Storefront API. This can be especially useful for retrieving data that should be dynamic (such as inventory quantities). For a detailed explanation for see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usestorefront).
+`useStorefront` allows for one-off queries or mutations to the [Shopify Storefront API](https://help.shopify.com/en/api/storefront-api/reference). This can be especially useful for retrieving data that should be dynamic (such as inventory quantities). For a detailed explanation for see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usestorefront).
