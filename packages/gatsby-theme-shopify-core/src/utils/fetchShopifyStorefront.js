@@ -1,5 +1,5 @@
-const fetchShopifyStorefront = ({shopName, storefrontAccessToken, query, variables, api = '2019-07'}) => {
-  const url = `https://${shopName}.myshopify.com/api/graphql`
+const fetchShopifyStorefront = ({shopName, storefrontAccessToken, endpoint, query, variables, api = '2019-07'}) => {
+  const url = endpoint || `https://${shopName}.myshopify.com/api/graphql`
   const body = JSON.stringify(Object.assign({query}, {variables}))
   return fetch(url, {
     method: 'POST',

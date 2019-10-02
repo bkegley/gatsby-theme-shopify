@@ -2,6 +2,17 @@
 
 `gatsby-theme-shopify` is a Gatsby theme for quickly bootstrapping a static Shopify site. The theme extracts the Gatsby configuration for loading Shopify assets and provides functionality for managing customers and a shopping cart.
 
+- [gatsby-theme-shopify](#gatsby-theme-shopify)
+  - [Motivation](#motivation)
+  - [Getting Started](#getting-started)
+  - [Usage](#usage)
+    - [Options](#options)
+    - [Shadowing](#shadowing)
+  - [Hooks](#hooks)
+    - [useCart](#usecart)
+    - [useCustomer](#usecustomer)
+    - [useStorefront](#usestorefront)
+
 ## Motivation
 
 Creating static Shopify sites is quite a bit easier with Gatsby and `gatsby-source-shopify`. However, scaffolding out page creation, cart management, and authenticating/managing users can be get complicated. The goal of `gatsby-theme-shopify` is to extract all the nitty-gritty configuration necessary for a fully-featured static Shopify site leaving you to create beautiful ecommerce sites.
@@ -35,11 +46,12 @@ module.exports = {
 
 ### Options
 
-| Key           | Default                                               | Description                                                           |
-| ------------- | ----------------------------------------------------- | --------------------------------------------------------------------- |
-| `shopName`    | none                                                  | Shopify shop name (e.g. my-site)                                      |
-| `accessToken` | none                                                  | Shopify Storefront access token                                       |
-| `modules`     | `['products', 'collections', 'articles', 'policies']` | Allows filtering certain items from Shopify (see configuration below) |
+| Key           | Default                                               | Description                                                                       |
+| ------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `shopName`    | none                                                  | Shopify shop name (e.g. my-site)                                                  |
+| `accessToken` | none                                                  | Shopify Storefront access token                                                   |
+| `modules`     | `['products', 'collections', 'articles', 'policies']` | Allows filtering certain items from Shopify (see configuration below)             |
+| `endpoint`    | none                                                  | Allows adding a custom graphql endpoint (must extend Shopify Storefront endpoint) |
 
 **`modules`**
 
@@ -83,3 +95,7 @@ Stub for using `useCart` hook
 ### useCustomer
 
 Stub for using `useCustomer` hook
+
+### useStorefront
+
+Stub for using `useStorefront` hook

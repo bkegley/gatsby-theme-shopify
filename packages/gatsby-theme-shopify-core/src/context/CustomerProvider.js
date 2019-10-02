@@ -163,9 +163,9 @@ function reducer(state, action) {
   }
 }
 
-const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
-  if (!shopName || !storefrontAccessToken) {
-    throw new Error(`shopName and storefrontAccessToken are required`)
+const CustomerProvider = ({shopName, storefrontAccessToken, endpoint, children}) => {
+  if ((!endpoint && !shopName) || !storefrontAccessToken) {
+    throw new Error(`Either an endpoint or shopName and storefrontAccessToken are required`)
   }
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const {error, loading, data, checkedCredentials} = state
@@ -188,6 +188,7 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
           const renewAccessTokenData = await fetchShopifyStorefront({
             shopName,
             storefrontAccessToken,
+            endpoint,
             query: renewAccessTokenMutation,
             variables: {customerAccessToken: customerCookieAccessToken},
           })
@@ -227,6 +228,7 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
             fetchShopifyStorefront({
               shopName,
               storefrontAccessToken,
+              endpoint,
               query: loginMutation,
               variables: {email, password},
             })
@@ -259,6 +261,7 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
             fetchShopifyStorefront({
               shopName,
               storefrontAccessToken,
+              endpoint,
               query: logoutMutation,
               variables: {customerAccessToken: data.accessToken},
             })
@@ -289,6 +292,7 @@ const CustomerProvider = ({shopName, storefrontAccessToken, children}) => {
             fetchShopifyStorefront({
               shopName,
               storefrontAccessToken,
+              endpoint,
               query: updatePasswordMutation,
               variables: {customerAccessToken: data.accessToken, customer: {password}},
             })
