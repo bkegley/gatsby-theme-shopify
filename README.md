@@ -243,7 +243,7 @@ createCheckout(options)
 | `note`                    | true     | Quantity of items                                                                                                                                       |
 | `presentmentCurrencyCode` | true     | Quantity of items                                                                                                                                       |
 | `shippingAddress`         | true     | Quantity of items                                                                                                                                       |
-| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here])(https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
+| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here](https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput)) |
 
 ### `useCustomer`
 
