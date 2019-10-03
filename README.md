@@ -168,7 +168,7 @@ addToCart(product)
 | ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `variantId`               | true     | The Shopify variant ID                                                                                                                                  |
 | `quantity`                | true     | Quantity of items                                                                                                                                       |
-| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here])(https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
+| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here](https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput)) |
 | `...additionalProperties` | false    | Any other information to store on the cart line item (e.g. the product)                                                                                 |
 
 #### updateCartLineItem
@@ -194,7 +194,7 @@ updateCartLineItem(product)
 | ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `variantId`        | true     | The Shopify variant ID                                                                                                                                  |
 | `quantity`         | true     | Quantity of items                                                                                                                                       |
-| `customAttributes` | false    | Additional line item properties - `[{key, value}]` - (see [here])(https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
+| `customAttributes` | false    | Additional line item properties - `[{key, value}]` - (see [here](https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput)) |
 
 #### removeCartLineItem
 
