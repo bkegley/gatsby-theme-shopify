@@ -89,6 +89,7 @@ module.exports = {
 `gatsby-theme-shopify` is comprised of two themes - `gatsby-theme-shopify-core` and `gatsby-theme-shopify`. The core theme is responsible for data fetching and page creation. `gatsby-theme-shopify` is a lightly styled layer over core utilizing [Theme UI](https://theme-ui.com). The intention is that these files would be shadowed in creating your own Shopify store.
 
 **File Tree**
+
 The following is the file tree for `gatsby-theme-shopify` to allow component shadowing.
 
 ```txt
@@ -145,7 +146,7 @@ import {useCart, useCustomer, useStorefront} from 'gatsby-theme-shopify'
 
 #### addToCart
 
-**Example**
+Adds an additional line item to the cart.
 
 ```js
 const product = {
@@ -163,16 +164,86 @@ const product = {
 addToCart(product)
 ```
 
-**Params**
+| Key                       | Required | Description                                                                                                                                             |
+| ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `variantId`               | true     | The Shopify variant ID                                                                                                                                  |
+| `quantity`                | true     | Quantity of items                                                                                                                                       |
+| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here])(https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
+| `...additionalProperties` | false    | Any other information to store on the cart line item (e.g. the product)                                                                                 |
 
-options
+#### updateCartLineItem
 
-| Key                       | Required | Description                                                                                                                                            |
-| ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `variantId`               | true     | The Shopify variant ID                                                                                                                                 |
-| `quantity`                | true     | Quantity of items                                                                                                                                      |
-| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here](https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
-| `...additionalProperties` | false    | Any other information to store on the cart line item (e.g. the product)                                                                                |
+Updates an existing line item in the cart.
+
+```js
+const product = {
+  variantId: '12345',
+  quantity: 2,
+  customAttributes: [
+    {
+      key: 'key',
+      value: 'value',
+    },
+  ],
+}
+
+updateCartLineItem(product)
+```
+
+| Key                | Required | Description                                                                                                                                             |
+| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `variantId`        | true     | The Shopify variant ID                                                                                                                                  |
+| `quantity`         | true     | Quantity of items                                                                                                                                       |
+| `customAttributes` | false    | Additional line item properties - `[{key, value}]` - (see [here])(https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
+
+#### removeCartLineItem
+
+Removes an existing line item from the cart.
+
+```js
+const product = {
+  variantId: '12345',
+}
+
+removeCartLineItem(product)
+```
+
+| Key         | Required | Description            |
+| ----------- | -------- | ---------------------- |
+| `variantId` | true     | The Shopify variant ID |
+
+#### emptyCart
+
+Empties the cart
+
+```js
+emptyCart()
+```
+
+#### createCheckout
+
+Creates a Shopify checkout from the existing cart line items. For explanation of options see [here](https://help.shopify.com/en/api/storefront-api/reference/mutation/checkoutcreate).
+
+```js
+createCheckout(options)
+  .then(res => {
+    // if there are errors in checkout creation
+    if (res.data.checkoutCreate.checkoutUserErrors && res.data.checkoutCreate.checkoutUserErrors.length > 0) {
+      // handle error
+    }
+    window.location.replace(res.data.checkoutCreate.checkout.webUrl)
+  })
+  .catch(err => console.log({err}))
+```
+
+| Key                       | Required | Description                                                                                                                                             |
+| ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `allowPartialAddresses`   | true     | Allow partially completed addresses before the checkout is final                                                                                        |
+| `email`                   | true     | Quantity of items                                                                                                                                       |
+| `note`                    | true     | Quantity of items                                                                                                                                       |
+| `presentmentCurrencyCode` | true     | Quantity of items                                                                                                                                       |
+| `shippingAddress`         | true     | Quantity of items                                                                                                                                       |
+| `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here])(https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput) |
 
 ### `useCustomer`
 
