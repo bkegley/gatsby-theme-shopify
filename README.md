@@ -237,11 +237,11 @@ createCheckout(options)
 
 | Key                       | Required | Description                                                                                                                                             |
 | ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowPartialAddresses`   | true     | Allow partially completed addresses before the checkout is final                                                                                        |
-| `email`                   | true     | Customer email                                                                                                                                          |
-| `note`                    | true     | Checkout note                                                                                                                                           |
-| `presentmentCurrencyCode` | true     | 3-digit currency code for the checkout                                                                                                                  |
-| `shippingAddress`         | true     | Default shipping address                                                                                                                                |
+| `allowPartialAddresses`   | false    | Allow partially completed addresses before the checkout is final                                                                                        |
+| `email`                   | false    | Customer email                                                                                                                                          |
+| `note`                    | false    | Checkout note                                                                                                                                           |
+| `presentmentCurrencyCode` | false    | 3-digit currency code for the checkout                                                                                                                  |
+| `shippingAddress`         | false    | Default shipping address                                                                                                                                |
 | `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here](https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput)) |
 
 ### `useCustomer`
