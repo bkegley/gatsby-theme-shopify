@@ -14,7 +14,6 @@
     - [`useStorefront`](#usestorefront)
 <!-- prettier-ignore-end -->
 
-
 ## Motivation
 
 Creating static Shopify sites is quite a bit easier with Gatsby and `gatsby-source-shopify`. However, scaffolding out page creation, cart management, and authenticating/managing users can be get complicated. The goal of `gatsby-theme-shopify` is to extract all the nitty-gritty configuration necessary for a fully-featured static Shopify site leaving you to create beautiful ecommerce sites.
@@ -90,7 +89,7 @@ module.exports = {
 
 **File Tree**
 
-The following is the file tree for `gatsby-theme-shopify` to allow component shadowing.
+The following is the file tree for `gatsby-theme-shopify` to allow [component shadowing](https://www.gatsbyjs.org/docs/theme-api/#shadowing).
 
 ```txt
 └── src
@@ -239,10 +238,10 @@ createCheckout(options)
 | Key                       | Required | Description                                                                                                                                             |
 | ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `allowPartialAddresses`   | true     | Allow partially completed addresses before the checkout is final                                                                                        |
-| `email`                   | true     | Quantity of items                                                                                                                                       |
-| `note`                    | true     | Quantity of items                                                                                                                                       |
-| `presentmentCurrencyCode` | true     | Quantity of items                                                                                                                                       |
-| `shippingAddress`         | true     | Quantity of items                                                                                                                                       |
+| `email`                   | true     | Customer email                                                                                                                                          |
+| `note`                    | true     | Checkout note                                                                                                                                           |
+| `presentmentCurrencyCode` | true     | 3-digit currency code for the checkout                                                                                                                  |
+| `shippingAddress`         | true     | Default shipping address                                                                                                                                |
 | `customAttributes`        | false    | Additional line item properties - `[{key, value}]` - (see [here](https://help.shopify.com/en/api/storefront-api/reference/input-object/attributeinput)) |
 
 ### `useCustomer`
@@ -262,9 +261,36 @@ createCheckout(options)
 ```
 <!-- prettier-ignore-end -->
 
+#### login
+
+```js
+login({email: 'email@email.com', password: 'password1234'})
+```
+
+| Key        | Required | Description       |
+| ---------- | -------- | ----------------- |
+| `email`    | true     | Customer email    |
+| `password` | true     | Customer password |
+
+#### logout
+
+```js
+logout()
+```
+
+#### updatePassword
+
+```js
+updatePassword('password12345')
+```
+
+| Key        | Required | Description       |
+| ---------- | -------- | ----------------- |
+| `password` | true     | Customer password |
+
 ### `useStorefront`
 
-`useCustomer` manages customer logged in state with functions for logging in/out and updating their password. For a detailed explanation for using customer functions see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usecustomer).
+`useStorefront` allows for one-off queries or mutations to the [Shopify Storefront API](https://help.shopify.com/en/api/storefront-api/reference). This can be especially useful for retrieving data that should be dynamic (such as inventory quantities). For a detailed explanation for see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usestorefront).
 
 <!-- prettier-ignore-start -->
 ```js
@@ -272,8 +298,6 @@ createCheckout(options)
     loading,
     error,
     data,
-  } = useStorefront()
+  } = useStorefront({query, variables})
 ```
 <!-- prettier-ignore-end -->
-
-`useStorefront` allows for one-off queries or mutations to the [Shopify Storefront API](https://help.shopify.com/en/api/storefront-api/reference). This can be especially useful for retrieving data that should be dynamic (such as inventory quantities). For a detailed explanation for see [here](https://github.com/bkegley/gatsby-theme-shopify/tree/master/packages/gatsby-theme-shopify-core/src/context#usestorefront).
