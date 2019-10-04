@@ -1,0 +1,20 @@
+{
+  "name": "example-bewilder",
+  "version": "0.0.5",
+  "description": "Example site using gatsby-theme-shopify-bewilder",
+  "main": "index.js",
+  "author": "Bryan Kegley <hi@bryankegley.me>",
+  "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "clean": "gatsby clean",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "gatsby": "^2.13.51",
+    "gatsby-theme-shopify-bewilder": "*",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
