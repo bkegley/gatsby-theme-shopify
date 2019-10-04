@@ -1,0 +1,11 @@
+{
+  "name": "gatsby-theme-shopify-bewilder",
+  "version": "0.0.4",
+  "description": "A Shopify theme for gatsby-theme-shopify",
+  "main": "index.js",
+  "author": "Bryan Kegley <hi@bryankegley.me>",
+  "license": "MIT",
+  "dependencies": {
+    "gatsby-theme-shopify": "^0.0.5"
+  }
+}
